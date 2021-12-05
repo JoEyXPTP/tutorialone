@@ -93,7 +93,7 @@ void main(){
                     fontSize: 30.0,
                     letterSpacing: 3.0
                 ),),
-                color: Colors.purple,
+                color: Colors.amberAccent,
                 alignment: Alignment.centerLeft,
               ),
             ),
