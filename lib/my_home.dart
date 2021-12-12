@@ -46,7 +46,7 @@ class _MyHomeState extends State<MyHome> {
             keyboardType: TextInputType.number,
             controller: firstController,
             decoration: InputDecoration(
-                labelText: "Enter 1st number",
+                labelText: "Enter first number",
                 hintText: "Enter number only",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20.0),
