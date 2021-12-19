@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     Heros("Tom and Jerry","img/Tom4.jpg"),
   ];
   
-  
+  var controller=PageController(viewportFraction: 0.8);
   
   @override
   Widget build(BuildContext context) {
@@ -28,17 +28,18 @@ class MyApp extends StatelessWidget {
       appBar: AppBar(
         title: Text("Image Lesson"),
       ),
-      body: ListView.builder(itemBuilder: (BuildContext context, int index) {
-        return Card(
-          child: Column(
-            children: [
-              Image.asset(heros[index].img),
-              Text(heros[index].name)
-            ],
-          ),
+      body: PageView.builder(itemBuilder: (BuildContext context, int index) {
+        return Column(
+          children: [
+            Container(child: Image.asset(heros[index].img),height: 500,),
+            Text(heros[index].name)
+          ],
         );
         
-      },itemCount: heros.length,),
+      },itemCount: heros.length,
+        controller: controller,
+     // scrollDirection: Axis.horizontal,
+      ),
     );
   }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_project/home_page.dart';
+import 'package:my_first_project/PlayerAppSolution/home_page.dart';
 
-void main2(){
+void main(){
   runApp(
     MaterialApp(
-      home: Homepage(),
+      home: HomePage(),
       theme: ThemeData(
         primarySwatch: Colors.green
       ),
