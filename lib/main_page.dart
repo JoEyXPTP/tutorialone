@@ -15,7 +15,7 @@ class MainPage extends StatelessWidget {
           onPressed: (){
             Navigator.of(context).push(MaterialPageRoute(
               builder:(context){
-                return (p);
+                return ();
               }
             ));
           })
