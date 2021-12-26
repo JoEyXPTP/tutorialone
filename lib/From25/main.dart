@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   final uri = Uri.parse("https://jsonplaceholder.typicode.com/posts");
   getData()async{
-    await http.get(url).then((response){
+    await http.get(uri).then((response){
       print(response.statusCode);
       print(response.body);
     });
