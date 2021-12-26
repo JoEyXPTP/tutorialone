@@ -19,9 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
- final String url="https://jsonplaceholder.typicode.com/posts";
-
-  final uri = new uri.parse(your_url);
+  final uri = Uri.parse("https://jsonplaceholder.typicode.com/posts");
   getData()async{
     await http.get(url).then((response){
       print(response.statusCode);
