@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_first_project/fluttter_app_tuto1/technology_news.dart';
+
 
 void main(){
   runApp(
@@ -22,13 +26,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   String baseUrl="https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.voanews.com%2Fapi%2Fzyritequir";
-  
 
-  Future<String> getNews()async{
+
+  Future<List<Items>> getNews() async{
 
     return await http.get(Uri.parse(baseUrl)).then((res) {
-      print(res.body.toString());
-      return res.body;
+      TechnologyNews tn=TechnologyNews.fromJson(json.decode(res.body.toString()));
+      return tn.items;
     });
 
   }
@@ -48,3 +52,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+
+
+
