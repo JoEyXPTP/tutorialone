@@ -1,9 +1,9 @@
 class TechnologyNews {
   String? status;
   Feed? feed;
-  List<Items>? items;
+  List<Items> items = [];
 
-  TechnologyNews({this.status, this.feed, this.items});
+  TechnologyNews({this.status, this.feed, required this.items});
 
   TechnologyNews.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -11,7 +11,7 @@ class TechnologyNews {
     if (json['items'] != null) {
       items = <Items>[];
       json['items'].forEach((v) {
-        items!.add(new Items.fromJson(v));
+        items.add(new Items.fromJson(v));
       });
     }
   }
