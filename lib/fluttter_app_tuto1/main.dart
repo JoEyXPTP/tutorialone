@@ -22,6 +22,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   String baseUrl="https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.voanews.com%2Fapi%2Fzyritequir";
+  
+
   Future<String> getNews()async{
 
     return await http.get(Uri.parse(baseUrl)).then((res) {
@@ -39,9 +41,7 @@ class _MyAppState extends State<MyApp> {
       ),
       body: Center(
         child: RaisedButton(onPressed: (){
-
-
-
+          getNews();
         },
     child: Text("Get Data"),),
       ),
