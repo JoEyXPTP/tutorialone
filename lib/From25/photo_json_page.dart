@@ -13,32 +13,28 @@ class PhotoJsonPage extends StatefulWidget {
 
 class _PhotoJsonPageState extends State<PhotoJsonPage> {
 
-  String url="https://jsonplaceholder.typicode.com/photos";
+  String url = "https://jsonplaceholder.typicode.com/photos";
 
 
-  List<Map<String,dynamic>>list=[];
+  List<Map<String, dynamic>>list = [];
 
-  getData()async{
-    await http.get(Uri.parse(url)).then((response){
-
-      List<dynamic> list1=json.decode(response.body);
-      List<Map<String,dynamic>>list2=[];
+  getData() async {
+    await http.get(Uri.parse(url)).then((response) {
+      List<dynamic> list1 = json.decode(response.body);
+      List<Map<String, dynamic>>list2 = [];
 
       list1.forEach((listData) {
-
-        Map<String,dynamic>map={
-          "t":listData['title'],
-          "u":listData['url']
+        Map<String, dynamic>map = {
+          "t": listData['title'],
+          "u": listData['url']
         };
 
         list2.add(map);
-
       });
 
       setState(() {
-        list=list2;
+        list = list2;
       });
-
     });
   }
 
@@ -57,9 +53,9 @@ class _PhotoJsonPageState extends State<PhotoJsonPage> {
       appBar: AppBar(
         title: Text("Photos"),
       ),
-      body: list.length==0?Center(
+      body: list.length == 0 ? Center(
         child: CircularProgressIndicator(),
-      ):ListView(
+      ) : ListView(
         children: list.map((listData) {
           return Card(
             child: Column(
@@ -72,14 +68,8 @@ class _PhotoJsonPageState extends State<PhotoJsonPage> {
         }).toList(),
 
 
-
       ),
     );
   }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('initState', initState));
-  }
 }
+
