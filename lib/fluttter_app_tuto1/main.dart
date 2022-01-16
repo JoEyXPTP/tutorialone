@@ -5,14 +5,14 @@ import 'package:http/http.dart' as http;
 import 'package:my_first_project/fluttter_app_tuto1/technology_news.dart';
 
 
-void main(){
+void main() {
   runApp(
-    MaterialApp(
-      home: MyApp(),
-      theme: ThemeData(
-        primarySwatch: Colors.red
-      ),
-    )
+      MaterialApp(
+        home: MyApp(),
+        theme: ThemeData(
+            primarySwatch: Colors.red
+        ),
+      )
   );
 }
 
@@ -25,32 +25,41 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  String baseUrl="https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.voanews.com%2Fapi%2Fzyritequir";
+  String baseUrl = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.voanews.com%2Fapi%2Fzyritequir";
 
 
-  Future<List<Items>> getNews() async{
-
+  Future<List<Items>> getNews() async {
     return await http.get(Uri.parse(baseUrl)).then((res) {
-      TechnologyNews tn=TechnologyNews.fromJson(json.decode(res.body.toString()));
+      TechnologyNews tn = TechnologyNews.fromJson(
+          json.decode(res.body.toString()));
       return tn.items;
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
         title: Text("Hello"),
-      ),
-      body: Center(
-        child: RaisedButton(onPressed: (){
-          getNews();
-        },
-    child: Text("Get Data"),),
-      ),
+    ),
+    body: FutureBuilder(
+    builder: (BuildContext context, AsyncSnapshot snapshot) {
+    if (snapshot.data == null) {
+    return Center(
+    child: CircularProgressIndicator(),
     );
-  }
+    } else {
+    List<Items> items = snapshot.data;
+    return ListView(
+    children: items.map((i) {
+    return Text(i.title!);
+    }).toList(),
+    );
+    }
+    },
+    future: getNews(),)}
+
+  );
 }
 
 
