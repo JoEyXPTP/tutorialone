@@ -67,7 +67,7 @@ class Feed {
 }
 
 class Items {
-  String? title;
+  String? title ;
   String? pubDate;
   String? link;
   String? guid;
